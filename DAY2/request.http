@@ -1,0 +1,4 @@
+POST http://localhost:8080/odata/v4/DemoService/DemoEntity
+Content-Type: application/json
+
+{"ID":3,"title":"test3","descr":" Desc of test3"}
