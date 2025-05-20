@@ -18,6 +18,7 @@ entity Books : cuid, managed {
     rating       : temp.rating;
     review       : Association to many temp.Reviews on review.book = $self;
     isReviewable : temp.Tech_Boolean not null default true;
+    status       : Association to temp.status @readonly;
 }
 
 // input validation

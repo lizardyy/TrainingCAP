@@ -7,6 +7,11 @@ annotate BookService.Books with @(
     },
     UI.SelectionFields     : [
         isbn,
+        title,
+        descr,
+        rating,
+        status_code,
+        currency_code
     ],
     UI.LineItem  : [
         {
@@ -14,6 +19,12 @@ annotate BookService.Books with @(
             Value             : isbn,
             @UI.Importance    : #High,
             @HTML5.CssDefaults: {width: '10em'}
+        },
+        {
+            $Type             : 'UI.DataField',
+            Value             : status_code,
+            @UI.Importance    : #High,
+            @HTML5.CssDefaults: {width: '6em'}
         },
         {
             $Type             : 'UI.DataField',
@@ -27,13 +38,12 @@ annotate BookService.Books with @(
             @UI.Importance: #Medium,
         },
         {
-            $Type         : 'UI.DataField',
-            Value         : price,
-            @UI.Importance: #High,
+            $Type         : 'UI.DataFieldForAnnotation',
+            Target        : '@UI.DataPoint#rating',
         },
         {
             $Type         : 'UI.DataField',
-            Value         : currency_code,
+            Value         : price,
             @UI.Importance: #High,
         },
         {
@@ -41,9 +51,39 @@ annotate BookService.Books with @(
             Value: stock,
         },
         {
-            $Type: 'UI.DataField',
-            Value: rating,
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookService.addReview',
+            Label : '{i18n>Addreview}',
+            Inline : true,
+            InvocationGrouping : #Isolated,
+            @UI.Importance : #Medium,
         },
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action : 'BookService.addReview',
+            Label : '{i18n>Addreview}',
+            Inline : false,
+            InvocationGrouping : #Isolated,
+            @UI.Importance : #Medium,
+        }
     ],
-
+    UI.DataPoint #rating : {
+        Value : rating,
+        Visualization : #Rating,
+        TargetValue : 5
+    },
+    UI.PresentationVariant :{
+        Text    : 'Default',
+        SortOrder: [{
+            $Type : 'Common.SortOrderType',
+            Property : isbn,
+            Descending : false
+        }],
+        GroupBy : [currency.code],
+        Total : [
+            price, 
+            stock
+        ],
+        Visualizations : ['@UI.LineItem']
+    }
 );
