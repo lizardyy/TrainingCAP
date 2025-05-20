@@ -74,7 +74,19 @@
                     "options": {
                         "settings": {
                             "entitySet": "Books",
-                            "navigation": {}
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "actions": {
+                                        "import_books": {
+                                            "press": "admin.ext.controller.importBooks.import",
+                                            "visible": true,
+                                            "enabled": true,
+                                            "text": "{i18n>importBooks}"
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
