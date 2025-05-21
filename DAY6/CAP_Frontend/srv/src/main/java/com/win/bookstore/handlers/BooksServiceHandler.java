@@ -36,31 +36,8 @@ public class BooksServiceHandler implements EventHandler {
     @Autowired
     private RatingCalculator ratingCalculator;
 
-    // @On(event = AddReviewContext.CDS_NAME)
-    // public void addReview(AddReviewContext context) {
-
-    //     System.out.println("test result from here：/");
-
-    //     CqnSelect select = context.getCqn();
-    //     AnalysisResult result = analyzer.analyze(select);
-    //     Map<String, Object> targetKeys = result.targetKeys();
-    //     String bookId = (String) targetKeys.get(Books.ID);
-
-    //     Reviews review = Reviews.create();
-    //     review.setBookId(bookId);
-    //     review.setRating(context.getRating());
-    //     review.setTitle(context.getTitle());
-    //     review.setDescr(context.getDescr());
-
-    //     // CqnSelect select2 = Select.from(Reviews_.CDS_NAME).byId(bookId);
-    //     CqnInsert insert = Insert.into(Reviews_.CDS_NAME).entry(review);
-    //     Result dbResult = db.run(insert);
-    //     Reviews newReview = dbResult.single(Reviews.class);
-
-    //     context.setResult(newReview);
-    // }
-
     // ------------------------- object - page---------------------
+
     @On(event = AddReviewContext.CDS_NAME)
     public void onAddReview(AddReviewContext context) {
 
@@ -79,20 +56,23 @@ public class BooksServiceHandler implements EventHandler {
     public void afterAddedReview(AddReviewContext context) {
         String bookId = context.getResult().getBookId();
         ratingCalculator.setBookRating(bookId);
-        Books book = Books.create( ); 
+        setBookUnreviewable(bookId, false);
+    }
+
+    private void setBookUnreviewable(String bookId, Boolean reviewable) {
+        Books book = Books.create();
         book.setId(bookId);
         db.run(Update.entity(BookService_.BOOKS, b -> b.matching(book)).data(Books.IS_REVIEWABLE,
-                false));
+                reviewable));
     }
 
     @Before(event = CqnService.EVENT_READ, entity = Books_.CDS_NAME)
-    public void ininBooksBeforeRead() {
+    public void initBooksBeforeRead() {
         ratingCalculator.initBookRatings();
     }
 
     @Before(event = CqnService.EVENT_CREATE, entity = Books_.CDS_NAME)
     public void initBookBeforeCreate(Books book) {
-        book.setStatusCode("A");
         book.setIsbn(getNextIsbn());
     }
 
@@ -102,14 +82,14 @@ public class BooksServiceHandler implements EventHandler {
         return isbnPrefix + isbnSuffix;
     }
 
-    @On(event = CqnService.EVENT_CREATE, entity = Books_.CDS_NAME)
-    public void changeBookOnCreate(Books book) {
-        if (book.getStock() == 0) {
-            book.setStatusCode("O");
-        }
-    }
+    // @On(event = CqnService.EVENT_CREATE, entity = Books_.CDS_NAME)
+    // public void changeBookOnCreate(Books book) {
+    //     if (book.getStock() == 0) {
+    //         book.setStatusCode("O");
+    //     }
+    // }
 
-    @On(event = CqnService.EVENT_UPDATE, entity = Books_.CDS_NAME)
+    @On(event = { CqnService.EVENT_CREATE, CqnService.EVENT_UPDATE }, entity = Books_.CDS_NAME)
     public void changeBookOnUpdate(Books book) {
         book.setStatusCode(book.getStock() == 0 ? "O" : "A");
     }

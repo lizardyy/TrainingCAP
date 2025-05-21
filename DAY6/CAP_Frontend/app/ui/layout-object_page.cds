@@ -8,7 +8,7 @@ annotate service.Books with @(
         Title         : {Value: title},
         Description   : {Value: isbn},
         TypeImageUrl  : 'sap-icon://education'
-    },//抬头的icon
+    }, //抬头的icon
     UI.Identification            : [
         {Value: title},
         {
@@ -23,7 +23,7 @@ annotate service.Books with @(
             Label : '{i18n>BookOverview}',
             ID    : 'Header',
             Target: '@UI.FieldGroup#Basic_info'
-        },//抬头字段内容
+        }, //抬头字段内容
         {
             $Type : 'UI.ReferenceFacet',
             Target: '@UI.DataPoint#rating'
@@ -63,7 +63,7 @@ annotate service.Books with @(
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>Translations}',
             Target: 'texts/@UI.LineItem'
-        },//支持多文本语言    
+        }, //支持多文本语言
         {
             $Type : 'UI.ReferenceFacet',
             Label : '{i18n>Details}',
@@ -81,7 +81,7 @@ annotate service.Books with @(
             Label : '{i18n>Reviews}',
             Target: 'review/@UI.LineItem'
         }
-    ],//页签
+    ], //页签
     UI.FieldGroup #Header        : {
         $Type: 'UI.FieldGroupType',
         Data : [
@@ -149,8 +149,17 @@ annotate service.Books with @(
                 Label: '{i18n>Modifiedby}'
             }
         ]
+    },
+    Common                       : {
+        SideEffects #StockChanges: {
+            SourceProperties: [stock],
+            TargetProperties: [
+                'price',
+                'status_code'
+            ]
+        }
     }
-);//页签内容
+); //页签内容
 
 annotate service.Books.texts with @(UI: {
     Identification : [{Value: title}],
@@ -217,7 +226,6 @@ annotate service.Reviews with @(UI: {
         {Value: modifiedAt}
     ]}
 });
-
 
 
 using from '../../srv/browser-service';
