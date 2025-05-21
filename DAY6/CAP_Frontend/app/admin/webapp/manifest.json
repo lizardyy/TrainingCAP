@@ -64,6 +64,11 @@
                     "pattern": ":?query:",
                     "name": "BooksList",
                     "target": "BooksList"
+                },
+                {
+                    "pattern": "Books({key}):?query:",
+                    "name": "BooksObjectPage",
+                    "target": "BooksObjectPage"
                 }
             ],
             "targets": {
@@ -74,7 +79,13 @@
                     "options": {
                         "settings": {
                             "entitySet": "Books",
-                            "navigation": {},
+                            "navigation": {
+                                "Books": {
+                                    "detail": {
+                                        "route": "BooksObjectPage"
+                                    }
+                                }
+                            },
                             "content": {
                                 "header": {
                                     "actions": {
@@ -86,7 +97,42 @@
                                         }
                                     }
                                 }
+                            },
+                            "initialLoad": "Enabled",
+                            "controlConfiguration": {
+                                "@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "selectAll": false,
+                                        "selectionMode": "Multi"
+                                    },
+                                    "actions": {
+                                        "DataFieldForAction::BookService.addReview": {
+                                            "enableOnSelect": "multi",
+                                            "afterExecution": {
+                                                "enableAutoScroll": true
+                                            }
+                                        }
+                                    }
+                                }
                             }
+                        }
+                    }
+                },
+                "BooksObjectPage": {
+                    "type": "Component",
+                    "id": "BooksObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Books",
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": true
+                                }
+                            },
+                            "editableHeaderContent": false,
+                            "sectionLayout": "Page"
                         }
                     }
                 }

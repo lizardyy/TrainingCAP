@@ -1,16 +1,16 @@
 {
   "openapi": "3.0.2",
   "info": {
-    "title": "Service for namespace BookService",
-    "description": "This service is located at [/api/books/](/api/books/)",
+    "title": "Service for namespace BrowserService",
+    "description": "This service is located at [/api/browser/](/api/browser/)",
     "version": ""
   },
   "x-sap-api-type": "ODATAV4",
   "x-odata-version": "4.01",
-  "x-sap-shortText": "Service for namespace BookService",
+  "x-sap-shortText": "Service for namespace BrowserService",
   "servers": [
     {
-      "url": "/api/books"
+      "url": "/api/browser"
     }
   ],
   "tags": [
@@ -38,9 +38,6 @@
     },
     {
       "name": "status_texts"
-    },
-    {
-      "name": "Upload"
     }
   ],
   "paths": {
@@ -123,12 +120,8 @@
                   "ID desc",
                   "createdAt",
                   "createdAt desc",
-                  "createdBy",
-                  "createdBy desc",
                   "modifiedAt",
                   "modifiedAt desc",
-                  "modifiedBy",
-                  "modifiedBy desc",
                   "title",
                   "title desc",
                   "descr",
@@ -164,9 +157,7 @@
                 "enum": [
                   "ID",
                   "createdAt",
-                  "createdBy",
                   "modifiedAt",
-                  "modifiedBy",
                   "title",
                   "descr",
                   "stock",
@@ -217,42 +208,10 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Books"
+                        "$ref": "#/components/schemas/BrowserService.Books"
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Creates a single book.",
-        "tags": [
-          "Books"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Books-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created book",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BookService.Books"
                 }
               }
             }
@@ -296,9 +255,7 @@
                 "enum": [
                   "ID",
                   "createdAt",
-                  "createdBy",
                   "modifiedAt",
-                  "modifiedBy",
                   "title",
                   "descr",
                   "stock",
@@ -340,7 +297,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Books"
+                  "$ref": "#/components/schemas/BrowserService.Books"
                 }
               }
             }
@@ -349,48 +306,9 @@
             "$ref": "#/components/responses/error"
           }
         }
-      },
-      "patch": {
-        "summary": "Changes a single book.",
-        "tags": [
-          "Books"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Books-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Deletes a single book.",
-        "tags": [
-          "Books"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
       }
     },
-    "/Books({ID})/BookService.addReview": {
+    "/Books({ID})/BrowserService.addReview": {
       "post": {
         "summary": "Invokes action addReview",
         "tags": [
@@ -404,7 +322,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BookService.Reviews"
+                      "$ref": "#/components/schemas/BrowserService.Reviews"
                     }
                   ],
                   "nullable": true
@@ -537,7 +455,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Currencies"
+                  "$ref": "#/components/schemas/BrowserService.Currencies"
                 }
               }
             }
@@ -596,7 +514,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Books_texts"
+                  "$ref": "#/components/schemas/BrowserService.Books_texts"
                 }
               }
             }
@@ -738,43 +656,10 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Reviews"
+                        "$ref": "#/components/schemas/BrowserService.Reviews"
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Creates a single review of a book.",
-        "tags": [
-          "Books",
-          "Reviews"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Reviews-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created review",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BookService.Reviews"
                 }
               }
             }
@@ -849,7 +734,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.status"
+                  "$ref": "#/components/schemas/BrowserService.status"
                 }
               }
             }
@@ -962,7 +847,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Books_texts"
+                        "$ref": "#/components/schemas/BrowserService.Books_texts"
                       }
                     }
                   }
@@ -987,7 +872,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/BookService.Books_texts-create"
+                "$ref": "#/components/schemas/BrowserService.Books_texts-create"
               }
             }
           }
@@ -998,7 +883,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Books_texts"
+                  "$ref": "#/components/schemas/BrowserService.Books_texts"
                 }
               }
             }
@@ -1097,7 +982,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Books_texts"
+                        "$ref": "#/components/schemas/BrowserService.Books_texts"
                       }
                     }
                   }
@@ -1158,7 +1043,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Books_texts"
+                  "$ref": "#/components/schemas/BrowserService.Books_texts"
                 }
               }
             }
@@ -1275,7 +1160,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Currencies"
+                        "$ref": "#/components/schemas/BrowserService.Currencies"
                       }
                     }
                   }
@@ -1353,7 +1238,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Currencies"
+                  "$ref": "#/components/schemas/BrowserService.Currencies"
                 }
               }
             }
@@ -1410,7 +1295,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Currencies_texts"
+                  "$ref": "#/components/schemas/BrowserService.Currencies_texts"
                 }
               }
             }
@@ -1519,7 +1404,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Currencies_texts"
+                        "$ref": "#/components/schemas/BrowserService.Currencies_texts"
                       }
                     }
                   }
@@ -1618,7 +1503,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Currencies_texts"
+                        "$ref": "#/components/schemas/BrowserService.Currencies_texts"
                       }
                     }
                   }
@@ -1687,7 +1572,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Currencies_texts"
+                  "$ref": "#/components/schemas/BrowserService.Currencies_texts"
                 }
               }
             }
@@ -1815,42 +1700,10 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.Reviews"
+                        "$ref": "#/components/schemas/BrowserService.Reviews"
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "post": {
-        "summary": "Creates a single review.",
-        "tags": [
-          "Reviews"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Reviews-create"
-              }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Created review",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BookService.Reviews"
                 }
               }
             }
@@ -1929,49 +1782,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Reviews"
+                  "$ref": "#/components/schemas/BrowserService.Reviews"
                 }
               }
             }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Changes a single review.",
-        "tags": [
-          "Reviews"
-        ],
-        "requestBody": {
-          "description": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Reviews-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Deletes a single review.",
-        "tags": [
-          "Reviews"
-        ],
-        "responses": {
-          "204": {
-            "description": "Success"
           },
           "4XX": {
             "$ref": "#/components/responses/error"
@@ -2013,9 +1827,7 @@
                 "enum": [
                   "ID",
                   "createdAt",
-                  "createdBy",
                   "modifiedAt",
-                  "modifiedBy",
                   "title",
                   "descr",
                   "stock",
@@ -2057,7 +1869,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.Books"
+                  "$ref": "#/components/schemas/BrowserService.Books"
                 }
               }
             }
@@ -2068,7 +1880,7 @@
         }
       }
     },
-    "/Reviews({ID})/book/BookService.addReview": {
+    "/Reviews({ID})/book/BrowserService.addReview": {
       "post": {
         "summary": "Invokes action addReview",
         "tags": [
@@ -2082,7 +1894,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/BookService.Reviews"
+                      "$ref": "#/components/schemas/BrowserService.Reviews"
                     }
                   ],
                   "nullable": true
@@ -2145,72 +1957,6 @@
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/Upload": {
-      "get": {
-        "summary": "Retrieves upload.",
-        "tags": [
-          "Upload"
-        ],
-        "parameters": [
-          {
-            "name": "$select",
-            "description": "Select properties to be returned, see [Select](http://docs.oasis-open.org/odata/odata/v4.01/odata-v4.01-part1-protocol.html#sec_SystemQueryOptionselect)",
-            "in": "query",
-            "explode": false,
-            "schema": {
-              "type": "array",
-              "uniqueItems": true,
-              "items": {
-                "type": "string",
-                "enum": [
-                  "csv"
-                ]
-              }
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Retrieved upload",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/BookService.Upload"
-                }
-              }
-            }
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Changes upload.",
-        "tags": [
-          "Upload"
-        ],
-        "requestBody": {
-          "description": "New property values",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/BookService.Upload-update"
-              }
-            }
-          }
-        },
-        "responses": {
-          "204": {
-            "description": "Success"
-          },
-          "4XX": {
-            "$ref": "#/components/responses/error"
           }
         }
       }
@@ -2315,7 +2061,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.status"
+                        "$ref": "#/components/schemas/BrowserService.status"
                       }
                     }
                   }
@@ -2397,7 +2143,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.status"
+                  "$ref": "#/components/schemas/BrowserService.status"
                 }
               }
             }
@@ -2460,7 +2206,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.status_texts"
+                  "$ref": "#/components/schemas/BrowserService.status_texts"
                 }
               }
             }
@@ -2575,7 +2321,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.status_texts"
+                        "$ref": "#/components/schemas/BrowserService.status_texts"
                       }
                     }
                   }
@@ -2674,7 +2420,7 @@
                     "value": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/BookService.status_texts"
+                        "$ref": "#/components/schemas/BrowserService.status_texts"
                       }
                     }
                   }
@@ -2749,7 +2495,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BookService.status_texts"
+                  "$ref": "#/components/schemas/BrowserService.status_texts"
                 }
               }
             }
@@ -2763,7 +2509,7 @@
   },
   "components": {
     "schemas": {
-      "BookService.Books": {
+      "BrowserService.Books": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
         "type": "object",
         "properties": {
@@ -2778,20 +2524,10 @@
             "example": "2017-04-13T15:51:04.0000000Z",
             "nullable": true
           },
-          "createdBy": {
-            "type": "string",
-            "maxLength": 255,
-            "nullable": true
-          },
           "modifiedAt": {
             "type": "string",
             "format": "date-time",
             "example": "2017-04-13T15:51:04.0000000Z",
-            "nullable": true
-          },
-          "modifiedBy": {
-            "type": "string",
-            "maxLength": 255,
             "nullable": true
           },
           "title": {
@@ -2830,7 +2566,7 @@
           "currency": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.Currencies"
+                "$ref": "#/components/schemas/BrowserService.Currencies"
               }
             ],
             "nullable": true
@@ -2861,7 +2597,7 @@
           "review": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BookService.Reviews"
+              "$ref": "#/components/schemas/BrowserService.Reviews"
             }
           },
           "review@count": {
@@ -2874,7 +2610,7 @@
           "status": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.status"
+                "$ref": "#/components/schemas/BrowserService.status"
               }
             ],
             "nullable": true
@@ -2893,7 +2629,7 @@
           "texts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BookService.Books_texts"
+              "$ref": "#/components/schemas/BrowserService.Books_texts"
             }
           },
           "texts@count": {
@@ -2902,171 +2638,14 @@
           "localized": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.Books_texts"
+                "$ref": "#/components/schemas/BrowserService.Books_texts"
               }
             ],
             "nullable": true
           }
         }
       },
-      "BookService.Books-create": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "title": {
-            "type": "string",
-            "maxLength": 111,
-            "nullable": true
-          },
-          "descr": {
-            "type": "string",
-            "maxLength": 1111,
-            "nullable": true
-          },
-          "stock": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.01,
-                "maximum": 99999999999.99,
-                "minimum": -99999999999.99
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 13,
-            "x-sap-scale": 2,
-            "nullable": true
-          },
-          "currency_code": {
-            "type": "string",
-            "maxLength": 3,
-            "nullable": true
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
-                "maximum": 9.9,
-                "minimum": -9.9
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 2,
-            "x-sap-scale": 1,
-            "nullable": true
-          },
-          "isbn": {
-            "type": "string",
-            "maxLength": 40,
-            "nullable": true
-          },
-          "texts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BookService.Books_texts-create"
-            }
-          }
-        },
-        "required": [
-          "ID",
-          "title",
-          "stock",
-          "isbn"
-        ]
-      },
-      "BookService.Books-update": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string",
-            "maxLength": 111,
-            "nullable": true
-          },
-          "descr": {
-            "type": "string",
-            "maxLength": 1111,
-            "nullable": true
-          },
-          "stock": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
-          "price": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.01,
-                "maximum": 99999999999.99,
-                "minimum": -99999999999.99
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 13,
-            "x-sap-scale": 2,
-            "nullable": true
-          },
-          "currency_code": {
-            "type": "string",
-            "maxLength": 3,
-            "nullable": true
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
-                "maximum": 9.9,
-                "minimum": -9.9
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 2,
-            "x-sap-scale": 1,
-            "nullable": true
-          },
-          "isbn": {
-            "type": "string",
-            "maxLength": 40,
-            "nullable": true
-          },
-          "texts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/BookService.Books_texts-create"
-            }
-          }
-        }
-      },
-      "BookService.Books_texts": {
+      "BrowserService.Books_texts": {
         "title": "Books_texts",
         "type": "object",
         "properties": {
@@ -3098,7 +2677,7 @@
           }
         }
       },
-      "BookService.Books_texts-create": {
+      "BrowserService.Books_texts-create": {
         "title": "Books_texts (for create)",
         "type": "object",
         "properties": {
@@ -3134,7 +2713,7 @@
           "title"
         ]
       },
-      "BookService.Currencies": {
+      "BrowserService.Currencies": {
         "title": "Code list for currencies\n\nSee https://cap.cloud.sap/docs/cds/common#entity-currencies",
         "type": "object",
         "properties": {
@@ -3165,7 +2744,7 @@
           "texts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BookService.Currencies_texts"
+              "$ref": "#/components/schemas/BrowserService.Currencies_texts"
             }
           },
           "texts@count": {
@@ -3174,14 +2753,14 @@
           "localized": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.Currencies_texts"
+                "$ref": "#/components/schemas/BrowserService.Currencies_texts"
               }
             ],
             "nullable": true
           }
         }
       },
-      "BookService.Currencies_texts": {
+      "BrowserService.Currencies_texts": {
         "title": "Currencies_texts",
         "type": "object",
         "properties": {
@@ -3205,7 +2784,7 @@
           }
         }
       },
-      "BookService.Reviews": {
+      "BrowserService.Reviews": {
         "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed",
         "type": "object",
         "properties": {
@@ -3239,7 +2818,7 @@
           "book": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.Books"
+                "$ref": "#/components/schemas/BrowserService.Books"
               }
             ],
             "nullable": true
@@ -3280,119 +2859,7 @@
           }
         }
       },
-      "BookService.Reviews-create": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for create)",
-        "type": "object",
-        "properties": {
-          "ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef"
-          },
-          "book_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
-                "maximum": 9.9,
-                "minimum": -9.9
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 2,
-            "x-sap-scale": 1,
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "maxLength": 111,
-            "nullable": true
-          },
-          "descr": {
-            "type": "string",
-            "maxLength": 1111,
-            "nullable": true
-          }
-        },
-        "required": [
-          "ID",
-          "book_ID",
-          "title"
-        ]
-      },
-      "BookService.Reviews-update": {
-        "title": "Aspect to capture changes by user and name\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-managed (for update)",
-        "type": "object",
-        "properties": {
-          "book_ID": {
-            "type": "string",
-            "format": "uuid",
-            "example": "01234567-89ab-cdef-0123-456789abcdef",
-            "nullable": true
-          },
-          "rating": {
-            "anyOf": [
-              {
-                "type": "number",
-                "format": "decimal",
-                "multipleOf": 0.1,
-                "maximum": 9.9,
-                "minimum": -9.9
-              },
-              {
-                "type": "string"
-              }
-            ],
-            "example": 0,
-            "x-sap-precision": 2,
-            "x-sap-scale": 1,
-            "nullable": true
-          },
-          "title": {
-            "type": "string",
-            "maxLength": 111,
-            "nullable": true
-          },
-          "descr": {
-            "type": "string",
-            "maxLength": 1111,
-            "nullable": true
-          }
-        }
-      },
-      "BookService.Upload": {
-        "title": "Upload",
-        "type": "object",
-        "properties": {
-          "csv": {
-            "type": "string",
-            "format": "base64url",
-            "nullable": true
-          }
-        }
-      },
-      "BookService.Upload-update": {
-        "title": "Upload (for update)",
-        "type": "object",
-        "properties": {
-          "csv": {
-            "type": "string",
-            "format": "base64url",
-            "nullable": true
-          }
-        }
-      },
-      "BookService.status": {
+      "BrowserService.status": {
         "title": "Aspect for a code list with name and description\n\nSee https://cap.cloud.sap/docs/cds/common#aspect-codelist",
         "type": "object",
         "properties": {
@@ -3419,7 +2886,7 @@
           "texts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BookService.status_texts"
+              "$ref": "#/components/schemas/BrowserService.status_texts"
             }
           },
           "texts@count": {
@@ -3428,14 +2895,14 @@
           "localized": {
             "allOf": [
               {
-                "$ref": "#/components/schemas/BookService.status_texts"
+                "$ref": "#/components/schemas/BrowserService.status_texts"
               }
             ],
             "nullable": true
           }
         }
       },
-      "BookService.status_texts": {
+      "BrowserService.status_texts": {
         "title": "status_texts",
         "type": "object",
         "properties": {

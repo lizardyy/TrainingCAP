@@ -80,3 +80,11 @@ annotate BookService.Books with
         Descending: true,
     }, ],
 }, );
+
+
+annotate BookService.Books.texts with {
+    locale @ValueList: {
+        entity: 'Languages',
+        type  : #fixed
+    }
+};

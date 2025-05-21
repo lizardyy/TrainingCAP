@@ -1,4 +1,5 @@
 using {com.win.bookstore as temp} from '../db/index';
+using {sap.common.Languages as CommonLanguages} from '@sap/cds/common';
 
 @path : 'books'
 service BookService {
@@ -11,4 +12,6 @@ service BookService {
   entity Upload       @odata.singleton {
     csv : LargeBinary @Core.MediaType: 'text/csv';
   }
+
+  entity Languages as projection on CommonLanguages;
 }

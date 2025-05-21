@@ -36,6 +36,7 @@ annotate BookService.Books with @(
             $Type         : 'UI.DataField',
             Value         : descr,
             @UI.Importance: #Medium,
+            @HTML5.CssDefaults: {width: '15em'}
         },
         {
             $Type         : 'UI.DataFieldForAnnotation',
