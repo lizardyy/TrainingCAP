@@ -29,3 +29,18 @@ annotate BookService.Reviews with {
 annotate BookService.Books.texts with {
   descr @UI.MultiLineText: true;
 };
+
+
+using from '../../srv/browser-service';
+
+annotate BrowserService.Books with {
+  ID     @UI.Hidden  @UI.HiddenFilter;
+  isbn   @Common.FieldControl : #ReadOnly;
+  descr  @UI.MultiLineText    : true;
+  price  @Measures.ISOCurrency: currency_code;
+  rating @readonly;
+};
+
+annotate BrowserService.Reviews with {
+  descr @UI.MultiLineText: true;
+};
