@@ -1,0 +1,13 @@
+{
+    "defaultRenderer": "fiori2",
+    "applications": {
+        "manage-po": {
+            "title": "Admin",
+            "description": "Manage all the purchase order",
+            "additionalInformation": "SAPUI5.Component=admin",
+            "applicationType": "URL",
+            "url": "/admin/webapp",
+            "navigationMode": "embedded"
+        }
+    }
+}
