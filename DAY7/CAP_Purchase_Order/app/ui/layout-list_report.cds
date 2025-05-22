@@ -6,7 +6,15 @@ annotate AdminService.Orders with @(
         TypeName      : '{i18n>HeaderTitle}',
         TypeNamePlural: '{i18n>OrderInfo}',
     },
-    UI.SelectionFields    : [orderNo, ],
+    UI.SelectionFields    : [
+        orderNo,
+        vendor_vendor,
+        purchOrg_purchOrg,
+        purchGroup_purchGroup,
+        companyCode_companyCode,
+        currency_code,
+        status_code
+    ],
     UI.LineItem           : [
         {
             $Type             : 'UI.DataField',
@@ -16,49 +24,62 @@ annotate AdminService.Orders with @(
         },
         {
             $Type             : 'UI.DataField',
-            Value             : vendor.vendor,
-            Label             : '{i18n>Vendor}',
-            @HTML5.CssDefaults: {width: '12em'}
+            Value             : vendor_vendor,
+            @UI.Importance    : #High,
+            @HTML5.CssDefaults: {width: '10em'}
         },
         {
             $Type             : 'UI.DataField',
-            Value             : purchOrg.purchOrg,
+            Value             : purchOrg_purchOrg,
+            Label: '{i18n>PurchOrg}', 
+            ![@UI.Importance] : #High,
             @HTML5.CssDefaults: {width: '7em'}
         },
         {
             $Type             : 'UI.DataField',
-            Value             : purchGroup.purchGroup,
+            Value             : purchGroup_purchGroup,
+            Label: '{i18n>PurchGroup}',
+            ![@UI.Importance] : #High,
             @HTML5.CssDefaults: {width: '7em'}
         },
         {
             $Type             : 'UI.DataField',
-            Value             : companyCode.companyCode,
+            Value             : companyCode_companyCode,
+            Label: '{i18n>CompanyCode}',
+            ![@UI.Importance] : #High,
             @HTML5.CssDefaults: {width: '7em'}
 
         },
         {
             $Type             : 'UI.DataField',
             Value             : totalStock,
+            ![@UI.Importance] : #Medium,
             @HTML5.CssDefaults: {width: '10em'}
         },
         {
             $Type             : 'UI.DataField',
             Value             : totalNetPrice,
+            ![@UI.Importance] : #Medium,
             @HTML5.CssDefaults: {width: '12em'}
         },
         {
             $Type             : 'UI.DataField',
-            Value             : status.name,
-            @HTML5.CssDefaults: {width: '8em'}
+            Value             : status_code,
+            Criticality       : statusIcon,
+            @HTML5.CssDefaults: {width: '8em'},
+            ![@UI.Importance] : #High
+
         },
         {
             $Type             : 'UI.DataField',
             Value             : text,
+            ![@UI.Importance] : #Low,
             @HTML5.CssDefaults: {width: '10em'}
         },
         {
             $Type             : 'UI.DataField',
             Value             : note,
+            ![@UI.Importance] : #Low,
             @HTML5.CssDefaults: {width: '10em'}
         },
 
@@ -69,7 +90,7 @@ annotate AdminService.Orders with @(
             Property  : orderNo,
             Descending: true
         }],
-        GroupBy       : [vendor.vendor],
+        GroupBy       : [vendor_vendor],
         Visualizations: ['@UI.LineItem']
     }
 );
