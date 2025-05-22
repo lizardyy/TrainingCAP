@@ -64,6 +64,11 @@
                     "pattern": ":?query:",
                     "name": "POList",
                     "target": "POList"
+                },
+                {
+                    "pattern": "Orders({key}):?query:",
+                    "name": "POObjectPage",
+                    "target": "POObjectPage"
                 }
             ],
             "targets": {
@@ -74,7 +79,13 @@
                     "options": {
                         "settings": {
                             "entitySet": "Orders",
-                            "navigation": {},
+                            "navigation": {
+                                "Orders":{
+                                    "detail":{
+                                        "route": "POObjectPage"
+                                    }
+                                }
+                            },
                             "content": {
                                 "header": {
                                     "actions": {
@@ -95,7 +106,25 @@
                             }
                         }
                     }
-                }                
+                },
+                "POObjectPage":{
+                    "type": "Component",
+                    "id": "POObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Orders",
+                            "navigation": {},
+                            "content": {
+                                "header": {
+                                    "anchorBarVisible": true
+                                }
+                            },
+                            "editableHeaderContent": false,
+                            "sectionLayout": "Page"
+                        }
+                    }
+                }            
                 
             }
         }
