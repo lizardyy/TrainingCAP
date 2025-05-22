@@ -1,0 +1,27 @@
+### Get all books
+GET http://localhost:8080/api/books/Books HTTP/1.1
+### Create a book
+POST http://localhost:8080/api/books/Books HTTP/1.1
+content-type: application/json
+
+{
+  "title": "Jhonson Mark",
+  "descr": "Atomic Habits is a book to learn how to manage your habbits by starting doing things in a smallest percentage that can lead up to the highest percentage, until you realize that your task is now finished",
+  "stock": 10,
+  "price": 15000,
+  "currency_code": "IDR",
+  "rating": 1,
+  "isbn": "666-1092909747"
+}
+### Get the book
+GET http://localhost:8080/api/books/Books(4a519e61-3c3a-4bd9-ab12-d7e0c5329933) HTTP/1.1
+### Update the book
+PATCH http://localhost:8080/api/books/Books(4a519e61-3c3a-4bd9-ab12-d7e0c5329933) HTTP/1.1
+content-type: application/json
+
+{
+  "descr": "This book is a great book brother please buy it one"
+}
+### Delete the book
+DELETE http://localhost:8080/api/books/Books(9f9c0b75-3f95-4991-a84b-cc2294216af9) HTTP/1.1
+content-type: application/json
