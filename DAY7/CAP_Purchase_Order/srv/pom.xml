@@ -2,15 +2,15 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>template_platform-parent</artifactId>
+		<artifactId>purchase_order-parent</artifactId>
 		<groupId>com.win</groupId>
 		<version>${revision}</version>
 	</parent>
 
-	<artifactId>template_platform</artifactId>
+	<artifactId>purchase_order</artifactId>
 	<packaging>jar</packaging>
 
-	<name>template_platform</name>
+	<name>purchase_order</name>
 
 	<!-- ACTUAL DEPENDENCIES -->
 	<dependencies>
