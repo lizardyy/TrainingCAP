@@ -69,6 +69,11 @@
                     "pattern": "Orders({key}):?query:",
                     "name": "POObjectPage",
                     "target": "POObjectPage"
+                },
+                {
+                    "pattern": "Orders({key})/items({key2}):?query:",
+                    "name": "POItemObjectPage",
+                    "target": "POItemObjectPage"
                 }
             ],
             "targets": {
@@ -100,8 +105,7 @@
                                         "selectAll": false,
                                         "selectionMode": "Multi"
                                     },
-                                    "actions": {
-                                    }
+                                    "actions": {}
                                 }
                             }
                         }
@@ -114,14 +118,78 @@
                     "options": {
                         "settings": {
                             "contextPath": "/Orders",
-                            "navigation": {},
+                            "navigation": { 
+                                "items": {
+                                    "detail" : {
+                                        "route": "POItemObjectPage"
+                                    }
+                                }
+                            },
                             "content": {
                                 "header": {
                                     "anchorBarVisible": true
                                 }
                             },
                             "editableHeaderContent": false,
-                            "sectionLayout": "Page"
+                            "sectionLayout": "Page",
+                            "controlConfiguration": {
+                                "items/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "creationMode": {
+                                            "createAtEnd": true,
+                                            "name": "Inline"
+                                        }
+                                    }
+                                },
+                                "attachments/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "creationMode": {
+                                            "createAtEnd": true,
+                                            "name": "Inline",
+                                            "inlineCreationRowsHiddenInEditMode": true
+                                        },
+                                        "selectAll": true,
+                                        "selectionMode": "Multi"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "POItemObjectPage":{
+                    "type": "Component",
+                    "id": "POItemObjectPage",
+                    "name": "sap.fe.templates.ObjectPage",
+                    "options": {
+                        "settings": {
+                            "contextPath": "/Orders/items",
+                            "navigation": { 
+
+                            },
+                            "controlConfiguration": {
+                                "accounts/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "creationMode": {
+                                            "createAtEnd": true
+                                        }
+                                    }
+                                },
+                                "attachments/@com.sap.vocabularies.UI.v1.LineItem": {
+                                    "tableSettings": {
+                                        "type": "GridTable",
+                                        "creationMode": {
+                                            "createAtEnd": true,
+                                            "name": "Inline",
+                                            "inlineCreationRowsHiddenInEditMode": true
+                                        },
+                                        "selectAll": true,
+                                        "selectionMode": "Multi"
+                                    }
+                                }
+                            }
                         }
                     }
                 }            
