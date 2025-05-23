@@ -177,39 +177,49 @@ annotate AdminService.OrderItems with @(
 );
 
 
-annotate AdminService.Attachments with @(UI: {
-    PresentationVariant: {
-        $Type    : 'UI.PresentationVariantType',
-        SortOrder: [{
-            $Type     : 'Common.SortOrderType',
-            Property  : ID,
-            Descending: true
-        }, ],
+annotate AdminService.Attachments with @(
+    UI    : {
+        PresentationVariant: {
+            $Type    : 'UI.PresentationVariantType',
+            SortOrder: [{
+                $Type     : 'Common.SortOrderType',
+                Property  : ID,
+                Descending: true
+            }, ],
+        },
+        LineItem           : [
+            {
+                Value             : data,
+                Label             : '{i18n>Data}',
+                @HTML5.CssDefaults: {width: '20em'}
+            },
+            {
+                Value             : createdAt,
+                @HTML5.CssDefaults: {width: '10em'}
+            },
+            {
+                Value             : createdBy,
+                @HTML5.CssDefaults: {width: '10em'}
+            },
+            {
+                Value             : modifiedAt,
+                @HTML5.CssDefaults: {width: '10em'}
+            },
+            {
+                Value             : modifiedBy,
+                @HTML5.CssDefaults: {width: '10em'}
+            },
+        ]
     },
-    LineItem           : [
-        {
-            Value             : data,
-            Label             : '{i18n>Data}',
-            @HTML5.CssDefaults: {width: '20em'}
-        },
-        {
-            Value             : createdAt,
-            @HTML5.CssDefaults: {width: '10em'}
-        },
-        {
-            Value             : createdBy,
-            @HTML5.CssDefaults: {width: '10em'}
-        },
-        {
-            Value             : modifiedAt,
-            @HTML5.CssDefaults: {width: '10em'}
-        },
-        {
-            Value             : modifiedBy,
-            @HTML5.CssDefaults: {width: '10em'}
-        },
-    ]
-});
+    Common: {SideEffects #FileUploaded: {
+        SourceProperties: [data],
+        TargetProperties: [
+            'data',
+            'fileType',
+            'fileName'
+        ]
+    }}
+);
 
 
 annotate AdminService.Accounts with @(UI: {

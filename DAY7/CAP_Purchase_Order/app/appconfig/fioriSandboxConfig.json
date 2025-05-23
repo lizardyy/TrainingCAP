@@ -1,13 +1,59 @@
 {
     "defaultRenderer": "fiori2",
-    "applications": {
-        "manage-po": {
-            "title": "Admin",
-            "description": "Manage all the purchase order",
-            "additionalInformation": "SAPUI5.Component=admin",
-            "applicationType": "URL",
-            "url": "/admin/webapp",
-            "navigationMode": "embedded"
+    "services": {
+        "LaunchPage": {
+            "adapter": {
+                "config": {
+                    "catalogs": [],
+                    "groups": [
+                        {
+                            "id": "Admin",
+                            "title": "Admin",
+                            "isPreset": true,
+                            "isVisible": true,
+                            "isGroupLocked": false,
+                            "tiles": [
+                                {
+                                    "id": "manage-po",
+                                    "tileType": "sap.ushell.ui.tile.StaticTile",
+                                    "properties": {
+                                        "targetURL": "#Orders-manage",
+                                        "title": "Manage Orders",
+                                        "description": "Add/edit/delete orders"
+                                    }
+                                }
+                            ]
+                        }    
+                    
+                    ]
+                }
+            }
+        },
+        "NavTargetResolution": {
+            "config": {
+                "enableClientSideTargetResolution": true
+            }
+        },
+        "ClientSideTargetResolution": {
+            "adapter": {
+                "config": {
+                    "inbounds": {
+                        "manage-po": {
+                            "semanticObject": "Orders",
+                            "action": "manage",
+                            "signature": {
+                                "parameters": {},
+                                "additionalParameters": "allowed"
+                            },
+                            "resolutionResult": {
+                                "applicationType": "SAPUI5",
+                                "additionalInformation": "SAPUI5.Component=admin",
+                                "url": "/admin/webapp"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
