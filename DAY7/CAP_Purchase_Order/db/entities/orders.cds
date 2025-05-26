@@ -19,6 +19,7 @@ entity Orders : cuid, managed {
     note          : po.description;
     totalStock    : po.stock;
     totalNetPrice : po.price;
+    isSyncable    : po.Tech_Boolean not null default True;
     items         : Composition of many po.OrderItems
                         on items.parent = $self;
 }

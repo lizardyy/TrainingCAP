@@ -10,10 +10,8 @@ import com.sap.cds.ql.Select;
 import com.sap.cds.Result;
 import com.sap.cds.services.persistence.PersistenceService;
 
-import cds.gen.adminservice.AdminService;
 import cds.gen.adminservice.AdminService_;
 import cds.gen.adminservice.OrderItems;
-import cds.gen.adminservice.OrderItems_;
 import cds.gen.adminservice.Orders;
 
 @Component

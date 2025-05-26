@@ -82,7 +82,25 @@ annotate AdminService.Orders with @(
             ![@UI.Importance] : #Low,
             @HTML5.CssDefaults: {width: '10em'}
         },
-
+        {
+            $Type             : 'UI.DataFieldForAction',
+            Action             : 'AdminService.sync',
+            ![@UI.Importance] : #Medium,
+            Label             : '{i18n>Sync}',
+            Inline            : false,
+            InvocationGrouping : #Isolated,
+            @HTML5.CssDefaults: {width: '10em'}
+        },
+        {
+            $Type             : 'UI.DataFieldForAction',
+            Action             : 'AdminService.sync',
+            ![@UI.Importance] : #Medium,
+            Label             : '{i18n>Sync}',
+            Inline            : true,
+            InvocationGrouping : #Isolated,
+            @HTML5.CssDefaults: {width: '10em'}
+        },
+        
     ],
     UI.PresentationVariant: {
         SortOrder     : [{
@@ -167,13 +185,13 @@ annotate AdminService.OrderItems with @(
 
         ]
     },
-    Common: {SideEffects #stockChanged: {
-        SourceProperties: [stock],
-        TargetProperties: [
-            'netPrice',
-            'stockIcon'
-        ]
-    }}
+    // Common: {SideEffects #stockChanged: {
+    //     SourceProperties: [stock],
+    //     TargetProperties: [
+    //         'netPrice',
+    //         'stockIcon'
+    //     ]
+    // }}
 );
 
 

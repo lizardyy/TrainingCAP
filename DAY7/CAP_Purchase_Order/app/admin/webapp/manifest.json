@@ -105,7 +105,15 @@
                                         "selectAll": false,
                                         "selectionMode": "Multi"
                                     },
-                                    "actions": {}
+                                    "actions": {
+                                        "DataFieldForAction::AdminService.sync": {
+                                            "enableOnSelect": "multi",
+                                            "afterExecution": {
+                                                "enableAutoScroll": true
+                                            }
+                                        }
+                                    }
+                                    
                                 }
                             }
                         }

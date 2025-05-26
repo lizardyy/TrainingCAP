@@ -2,6 +2,14 @@ using from '../../srv/admin-service';
 using from '../ui/layout-list_report';
 
 annotate AdminService.Orders with @(
+    UI.Identification            : [
+
+        {
+            $Type : 'UI.DataFieldForAction',
+            Action: 'AdminService.sync',
+            Label : '{i18n>sync}'
+        }
+    ],
     UI.HeaderInfo                  : {
         TypeName      : '{i18n>HeaderTitle}',
         TypeNamePlural: '{i18n>OrderInfo}',

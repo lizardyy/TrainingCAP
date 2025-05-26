@@ -833,6 +833,7 @@
                   "note",
                   "totalStock",
                   "totalNetPrice",
+                  "isSyncable",
                   "status_code",
                   "statusIcon",
                   "isEditable"
@@ -880,6 +881,35 @@
             "$ref": "#/components/responses/error"
           }
         }
+      }
+    },
+    "/Attachments({ID})/order/AdminService.sync": {
+      "post": {
+        "summary": "Invokes action sync",
+        "tags": [
+          "Attachments"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ]
       }
     },
     "/Attachments({ID})/orderItem": {
@@ -2437,6 +2467,7 @@
                   "note",
                   "totalStock",
                   "totalNetPrice",
+                  "isSyncable",
                   "status_code",
                   "statusIcon",
                   "isEditable"
@@ -2484,6 +2515,35 @@
             "$ref": "#/components/responses/error"
           }
         }
+      }
+    },
+    "/OrderItems({ID})/parent/AdminService.sync": {
+      "post": {
+        "summary": "Invokes action sync",
+        "tags": [
+          "OrderItems"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ]
       }
     },
     "/OrderItems({ID})/plant": {
@@ -2681,6 +2741,8 @@
                   "totalStock desc",
                   "totalNetPrice",
                   "totalNetPrice desc",
+                  "isSyncable",
+                  "isSyncable desc",
                   "status_code",
                   "status_code desc",
                   "statusIcon",
@@ -2717,6 +2779,7 @@
                   "note",
                   "totalStock",
                   "totalNetPrice",
+                  "isSyncable",
                   "status_code",
                   "statusIcon",
                   "isEditable"
@@ -2856,6 +2919,7 @@
                   "note",
                   "totalStock",
                   "totalNetPrice",
+                  "isSyncable",
                   "status_code",
                   "statusIcon",
                   "isEditable"
@@ -2942,6 +3006,35 @@
             "$ref": "#/components/responses/error"
           }
         }
+      }
+    },
+    "/Orders({ID})/AdminService.sync": {
+      "post": {
+        "summary": "Invokes action sync",
+        "tags": [
+          "Orders"
+        ],
+        "responses": {
+          "204": {
+            "description": "Success"
+          },
+          "4XX": {
+            "$ref": "#/components/responses/error"
+          }
+        },
+        "parameters": [
+          {
+            "description": "key: ID",
+            "in": "path",
+            "name": "ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "example": "01234567-89ab-cdef-0123-456789abcdef"
+            }
+          }
+        ]
       }
     },
     "/Orders({ID})/attachments": {
@@ -6295,6 +6388,10 @@
             "x-sap-precision": 11,
             "x-sap-scale": 2,
             "nullable": true
+          },
+          "isSyncable": {
+            "type": "boolean",
+            "default": true
           },
           "items": {
             "type": "array",

@@ -8,7 +8,21 @@ annotate AdminService.Orders with {
     note @UI.MultiLineText : true;
     totalNetPrice @readonly;
     totalStock @readonly;
-}
+} actions {
+  @(
+    Common.SideEffects             : {
+      TargetProperties: ['_it/ID'],
+      TargetEntities  : [
+        _it,
+      ]
+    },
+    cds.odata.bindingparameter.name: '_it',
+    Core.OperationAvailable        : _it.isSyncable
+  )
+  sync
+};
+
+
 
 annotate AdminService.OrderItems with {
     ID @UI.Hidden @UI.HiddenFilter;
